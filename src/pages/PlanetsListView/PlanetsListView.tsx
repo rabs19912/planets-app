@@ -1,6 +1,8 @@
 import React from "react";
 import { usePlanets } from "../../hooks";
-import { ORDER_ORIENTATION_TYPES, Planet, PlanetProperty } from "../../utils/types";
+import {
+  ORDER_ORIENTATION_TYPES,
+} from "../../utils/types";
 import { Box } from "./styled";
 import { AVAILABLE_CLIMATES } from "../../utils/constants";
 
@@ -25,64 +27,21 @@ function PrevNextButtons({
   );
 }
 
-function orderByNumber<T>(
-  array: T[],
-  property: keyof T,
-  orientation: ORDER_ORIENTATION_TYPES
-) {
-  return array.sort((a, b) => {
-    const valueA = Number(a[property]);
-    const valueB = Number(b[property]);
-    return orientation === ORDER_ORIENTATION_TYPES.asc
-      ? valueB - valueA
-      : valueA - valueB;
-  });
-}
-
 function PlanetsListView() {
-  const { results, next, previous, updatePlanetsUrl, orderByName } = usePlanets();
-  const [planets, setPlanets] = React.useState<Planet[]>();
+  const {
+    results: planets,
+    next,
+    previous,
+    updatePlanetsUrl,
+    orderByName,
+    orderByDiameter,
+    filterByClimate,
+  } = usePlanets();
+  // const [planets, setPlanets] = React.useState<Planet[]>();
 
-  React.useEffect(() => {
-    setPlanets(results);
-  }, [results]);
-
-  // const orderByName = React.useCallback(
-  //   (orientation: ORDER_ORIENTATION_TYPES) => {
-  //     const currentPlanets = planets as Planet[];
-  //     const orderedPlanets = orderAlphabetical<Planet>(
-  //       currentPlanets,
-  //       "name",
-  //       orientation
-  //     );
-
-  //     setPlanets([...(orderedPlanets as Planet[])]);
-  //   },
-  //   [planets, setPlanets]
-  // );
-
-  const orderByDiameter = React.useCallback(
-    (orientation: ORDER_ORIENTATION_TYPES) => {
-      const currentPlanets = planets as Planet[];
-      const orderedPlanets = orderByNumber<Planet>(
-        currentPlanets,
-        "diameter",
-        orientation
-      );
-      setPlanets([...(orderedPlanets as Planet[])]);
-    },
-    [planets, setPlanets]
-  );
-
-  const filterByClimate = React.useCallback(
-    (climate: string) => {
-      const newPlanets = results?.filter((planet) =>
-        planet.climate.includes(climate)
-      );
-      setPlanets([...(newPlanets as Planet[])]);
-    },
-    [setPlanets, results]
-  );
+  // React.useEffect(() => {
+  //   setPlanets(results);
+  // }, [results]);
 
   return (
     <>
@@ -106,7 +65,6 @@ function PlanetsListView() {
           Order by Z-A
         </button>
       )}
-      {/* {planets && <button onClick={orderByPopulation}>Order by population</button>} */}
       {planets && (
         <button onClick={() => orderByDiameter(ORDER_ORIENTATION_TYPES.asc)}>
           Order by Diameter MAYOR A MENOR

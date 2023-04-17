@@ -8,7 +8,7 @@ import {
   Planet,
 } from "../utils/types";
 import { AxiosResponse } from "axios";
-import { orderAlphabetical } from "../utils/common";
+import { orderAlphabetical, orderByNumber } from "../utils/common";
 
 type usePlanetsReturn = PaginatedPlanetsResult & {
   isLoading: boolean;
@@ -16,6 +16,8 @@ type usePlanetsReturn = PaginatedPlanetsResult & {
   setPlanetsUrl: React.Dispatch<React.SetStateAction<string | undefined>>;
   updatePlanetsUrl: (url: string) => void;
   orderByName: (orientation: ORDER_ORIENTATION_TYPES) => void;
+  orderByDiameter: (orientation: ORDER_ORIENTATION_TYPES) => void;
+  filterByClimate: (climate: string) => void;
 };
 
 function usePlanets(): usePlanetsReturn {
@@ -51,6 +53,29 @@ function usePlanets(): usePlanetsReturn {
     [planets, setPlanets]
   );
 
+  const orderByDiameter = React.useCallback(
+    (orientation: ORDER_ORIENTATION_TYPES) => {
+      const currentPlanets = planets as Planet[];
+      const orderedPlanets = orderByNumber<Planet>(
+        currentPlanets,
+        "diameter",
+        orientation
+      );
+      setPlanets([...(orderedPlanets as Planet[])]);
+    },
+    [planets, setPlanets]
+  );
+
+  const filterByClimate = React.useCallback(
+    (climate: string) => {
+      const newPlanets = data?.data.results?.filter((planet) =>
+        planet.climate.includes(climate)
+      );
+      setPlanets([...(newPlanets as Planet[])]);
+    },
+    [setPlanets, data?.data.results]
+  );
+
   return {
     results: planets,
     next: planetsResult?.next,
@@ -60,6 +85,8 @@ function usePlanets(): usePlanetsReturn {
     setPlanetsUrl,
     updatePlanetsUrl,
     orderByName,
+    orderByDiameter,
+		filterByClimate
   };
 }
 
