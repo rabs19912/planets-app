@@ -1,5 +1,22 @@
 import { ORDER_ORIENTATION_TYPES } from "./types";
 
+const compareString = (firstValue: string, secondValue: string) =>
+  firstValue.localeCompare(secondValue);
+
+const sortByString = (
+  a: string,
+  b: string,
+  orientation: ORDER_ORIENTATION_TYPES
+) => {
+
+  const sortByOrientation = {
+    [ORDER_ORIENTATION_TYPES.asc]: compareString(a, b),
+    [ORDER_ORIENTATION_TYPES.desc]: compareString(b, a),
+  };
+	
+  return sortByOrientation[orientation];
+};
+
 function orderAlphabetical<T>(
   array: T[],
   property: keyof T,
@@ -8,9 +25,7 @@ function orderAlphabetical<T>(
   return array?.sort((a, b) => {
     const valueA = a[property] as string;
     const valueB = b[property] as string;
-    return orientation === ORDER_ORIENTATION_TYPES.asc
-      ? valueA.localeCompare(valueB)
-      : valueB.localeCompare(valueA);
+    return sortByString(valueA, valueB, orientation);
   });
 }
 
