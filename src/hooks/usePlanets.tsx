@@ -18,6 +18,7 @@ type usePlanetsReturn = PaginatedPlanetsResult & {
   orderByName: (orientation: ORDER_ORIENTATION_TYPES) => void;
   orderByDiameter: (orientation: ORDER_ORIENTATION_TYPES) => void;
   filterByClimate: (climate: string) => void;
+  resetFilters: () => void;
 };
 
 function usePlanets(): usePlanetsReturn {
@@ -68,12 +69,17 @@ function usePlanets(): usePlanetsReturn {
 
   const filterByClimate = React.useCallback(
     (climate: string) => {
-      const newPlanets = data?.data.results?.filter((planet) =>
+      const planetsByClimate = planetsResult?.results?.filter((planet) =>
         planet.climate.includes(climate)
       );
-      setPlanets([...(newPlanets as Planet[])]);
+      setPlanets([...(planetsByClimate as Planet[])]);
     },
-    [setPlanets, data?.data.results]
+    [setPlanets, planetsResult]
+  );
+
+  const resetFilters = React.useCallback(
+    () => setPlanets([...(planetsResult?.results as Planet[])]),
+    [planetsResult?.results]
   );
 
   return {
@@ -86,7 +92,8 @@ function usePlanets(): usePlanetsReturn {
     updatePlanetsUrl,
     orderByName,
     orderByDiameter,
-		filterByClimate
+    filterByClimate,
+    resetFilters,
   };
 }
 

@@ -8,12 +8,11 @@ const sortByString = (
   b: string,
   orientation: ORDER_ORIENTATION_TYPES
 ) => {
-
   const sortByOrientation = {
     [ORDER_ORIENTATION_TYPES.asc]: compareString(a, b),
     [ORDER_ORIENTATION_TYPES.desc]: compareString(b, a),
   };
-	
+
   return sortByOrientation[orientation];
 };
 

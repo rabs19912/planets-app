@@ -14,39 +14,41 @@ function PlanetsListView() {
     orderByName,
     orderByDiameter,
     filterByClimate,
+    resetFilters,
   } = usePlanets();
 
   return (
     <>
-      {planets?.map((planet, index) => {
-        return (
-          <Box key={index}>
-            <div>NAME: {planet.name}</div>
-            {/* <div>POPULATION: {planet.population}</div> */}
-            <div>DIAMETER: {planet.diameter}</div>
-            <div>CLIMATE: {planet.climate}</div>
-          </Box>
-        );
-      })}
-      {planets && (
-        <button onClick={() => orderByName(ORDER_ORIENTATION_TYPES.asc)}>
-          Order by A-Z
-        </button>
+      {Boolean(planets?.length) &&
+        planets?.map((planet, index) => {
+          return (
+            <Box key={index}>
+              <div>NAME: {planet.name}</div>
+              {/* <div>POPULATION: {planet.population}</div> */}
+              <div>DIAMETER: {planet.diameter}</div>
+              <div>CLIMATE: {planet.climate}</div>
+            </Box>
+          );
+        })}
+      {!Boolean(planets?.length) && (
+        <div>No hay resultados que coincidan con tu busqueda o filtro</div>
       )}
       {planets && (
-        <button onClick={() => orderByName(ORDER_ORIENTATION_TYPES.desc)}>
-          Order by Z-A
-        </button>
-      )}
-      {planets && (
-        <button onClick={() => orderByDiameter(ORDER_ORIENTATION_TYPES.asc)}>
-          Order by Diameter MAYOR A MENOR
-        </button>
-      )}
-      {planets && (
-        <button onClick={() => orderByDiameter(ORDER_ORIENTATION_TYPES.desc)}>
-          Order by Diameter MENOR A MAYOR
-        </button>
+        <>
+          <button onClick={() => orderByName(ORDER_ORIENTATION_TYPES.asc)}>
+            Order by A-Z
+          </button>
+          <button onClick={() => orderByName(ORDER_ORIENTATION_TYPES.desc)}>
+            Order by Z-A
+          </button>
+          <button onClick={() => orderByDiameter(ORDER_ORIENTATION_TYPES.asc)}>
+            Order by Diameter MAYOR A MENOR
+          </button>
+          <button onClick={() => orderByDiameter(ORDER_ORIENTATION_TYPES.desc)}>
+            Order by Diameter MENOR A MAYOR
+          </button>
+          <button onClick={resetFilters}>Reset Filters</button>
+        </>
       )}
 
       {AVAILABLE_CLIMATES.map((climate, index) => {
