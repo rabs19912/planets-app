@@ -1,31 +1,9 @@
 import React from "react";
 import { usePlanets } from "../../hooks";
-import {
-  ORDER_ORIENTATION_TYPES,
-} from "../../utils/types";
+import { ORDER_ORIENTATION_TYPES } from "../../utils/types";
 import { Box } from "./styled";
 import { AVAILABLE_CLIMATES } from "../../utils/constants";
-
-type PrevNextButtonsProps = {
-  previous?: string | null;
-  next?: string;
-  updatePlanetsUrl: (url: string) => void;
-};
-
-function PrevNextButtons({
-  previous,
-  next,
-  updatePlanetsUrl,
-}: PrevNextButtonsProps) {
-  return (
-    <>
-      {next && <div onClick={() => updatePlanetsUrl(next as string)}>next</div>}
-      {previous && (
-        <div onClick={() => updatePlanetsUrl(previous as string)}>previous</div>
-      )}
-    </>
-  );
-}
+import PrevNextButtons from "../../components/PrevNextButtons";
 
 function PlanetsListView() {
   const {
@@ -37,11 +15,6 @@ function PlanetsListView() {
     orderByDiameter,
     filterByClimate,
   } = usePlanets();
-  // const [planets, setPlanets] = React.useState<Planet[]>();
-
-  // React.useEffect(() => {
-  //   setPlanets(results);
-  // }, [results]);
 
   return (
     <>

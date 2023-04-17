@@ -11,8 +11,6 @@ export type PaginatedPlanetsResult = {
   results?: Planet[];
 };
 
-export type PlanetProperty = Record<keyof Planet, string>;
-
 export type Planet = {
   climate: string;
   created: Date;

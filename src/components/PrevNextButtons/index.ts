@@ -1,0 +1,1 @@
+export {PrevNextButtons as default} from './PrevNextButtons';
