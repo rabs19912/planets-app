@@ -4,11 +4,17 @@ import { SelectContainer } from "./styled";
 
 type FilterSelectProps = {
   onFilter: (event: SelectOption) => void;
-  filterOptions: SelectOption[]
+  filterOptions: SelectOption[];
+  isDisabled: boolean;
+  className?: string;
 };
 
-function FilterSelect({ onFilter, filterOptions }: FilterSelectProps) {
- 
+function FilterSelect({
+  onFilter,
+  filterOptions,
+  isDisabled,
+  className,
+}: FilterSelectProps) {
   return (
     <SelectContainer>
       <Select
@@ -17,6 +23,8 @@ function FilterSelect({ onFilter, filterOptions }: FilterSelectProps) {
         isSearchable
         onChange={onFilter}
         placeholder={"Filter by Climate"}
+        isDisabled={isDisabled}
+        className={className}
       />
     </SelectContainer>
   );

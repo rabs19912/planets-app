@@ -33,12 +33,16 @@ type SortSelectPros = {
   orderByDiameter: (orientation: ORDER_ORIENTATION_TYPES) => void;
   orderByName: (orientation: ORDER_ORIENTATION_TYPES) => void;
   resetFilters: () => void;
+  isDisabled: boolean;
+  className?: string;
 };
 
 function SortSelect({
   orderByDiameter,
   orderByName,
   resetFilters,
+  isDisabled,
+  className,
 }: SortSelectPros) {
   const onSort = (event: SelectOption) => {
     if (!event) {
@@ -64,7 +68,9 @@ function SortSelect({
         isClearable
         isSearchable
         onChange={onSort}
-				placeholder={'Sort by...'}
+        placeholder={"Sort by..."}
+        isDisabled={isDisabled}
+        className={className}
       />
     </SelectContainer>
   );

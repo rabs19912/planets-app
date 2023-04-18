@@ -13,10 +13,19 @@ function PrevNextButtons({
 }: PrevNextButtonsProps) {
   return (
     <Wrapper>
-      {previous && (
-        <StyledButton onClick={() => updatePlanetsUrl(previous as string)}>previous</StyledButton>
-      )}
-      {next && <StyledButton onClick={() => updatePlanetsUrl(next as string)}>next</StyledButton>}
+      <StyledButton
+        hide={Boolean(previous)}
+        onClick={() => updatePlanetsUrl(previous as string)}
+      >
+        previous
+      </StyledButton>
+
+      <StyledButton
+        hide={Boolean(next)}
+        onClick={() => updatePlanetsUrl(next as string)}
+      >
+        next
+      </StyledButton>
     </Wrapper>
   );
 }
