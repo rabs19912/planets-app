@@ -1,0 +1,1 @@
+export {FilterSelect as default} from './FilterSelect';

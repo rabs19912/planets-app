@@ -77,10 +77,10 @@ function usePlanets(): usePlanetsReturn {
     [setPlanets, planetsResult]
   );
 
-  const resetFilters = React.useCallback(
-    () => setPlanets([...(planetsResult?.results as Planet[])]),
-    [planetsResult?.results]
-  );
+  const resetFilters = React.useCallback(() => {
+    console.log(planetsResult?.results);
+    setPlanets([...(planetsResult?.results as Planet[])]);
+  }, [planetsResult?.results]);
 
   return {
     results: planets,

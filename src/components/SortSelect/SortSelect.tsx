@@ -48,12 +48,12 @@ function SortSelect({
     switch (event.value) {
       case SORT_OPTIONS.ascDiameter:
       case SORT_OPTIONS.descDiameter:
-        orderByDiameter(event.data.order);
+        orderByDiameter(event.data?.order as ORDER_ORIENTATION_TYPES);
         break;
       case SORT_OPTIONS.ascAlphabet:
       case SORT_OPTIONS.descAlphabet:
       default:
-        orderByName(event.data.order);
+        orderByName(event.data?.order as ORDER_ORIENTATION_TYPES);
         break;
     }
   };

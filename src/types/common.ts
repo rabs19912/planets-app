@@ -30,9 +30,9 @@ export type Planet = {
 };
 
 export type SelectOption = SingleValue<{
-  value: SORT_OPTIONS;
+  value: any;
   label: string;
-  data: { order: ORDER_ORIENTATION_TYPES };
+  data?: { order: ORDER_ORIENTATION_TYPES };
 }>;
 
 export enum SORT_OPTIONS {

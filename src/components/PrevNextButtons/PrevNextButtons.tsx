@@ -1,3 +1,5 @@
+import { Wrapper, StyledButton } from "./styled";
+
 type PrevNextButtonsProps = {
   previous?: string | null;
   next?: string;
@@ -10,12 +12,12 @@ function PrevNextButtons({
   updatePlanetsUrl,
 }: PrevNextButtonsProps) {
   return (
-    <>
-      {next && <div onClick={() => updatePlanetsUrl(next as string)}>next</div>}
+    <Wrapper>
       {previous && (
-        <div onClick={() => updatePlanetsUrl(previous as string)}>previous</div>
+        <StyledButton onClick={() => updatePlanetsUrl(previous as string)}>previous</StyledButton>
       )}
-    </>
+      {next && <StyledButton onClick={() => updatePlanetsUrl(next as string)}>next</StyledButton>}
+    </Wrapper>
   );
 }
 
