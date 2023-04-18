@@ -4,6 +4,7 @@ import { Box } from "./styled";
 import { AVAILABLE_CLIMATES } from "../../utils/constants";
 import PrevNextButtons from "../../components/PrevNextButtons";
 import { ORDER_ORIENTATION_TYPES } from "../../types/common";
+import { Header } from "../../components/Header/Header";
 
 function PlanetsListView() {
   const {
@@ -19,6 +20,7 @@ function PlanetsListView() {
 
   return (
     <>
+    <Header />
       {Boolean(planets?.length) &&
         planets?.map((planet, index) => {
           return (

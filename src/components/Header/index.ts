@@ -1,0 +1,1 @@
+export {Header as Default} from './Header';
