@@ -2,13 +2,13 @@ import React from "react";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_CACHE_KEYS } from "../utils/constants";
 import { getPlanets } from "../api";
-import {
-  ORDER_ORIENTATION_TYPES,
-  PaginatedPlanetsResult,
-  Planet,
-} from "../utils/types";
 import { AxiosResponse } from "axios";
 import { orderAlphabetical, orderByNumber } from "../utils/common";
+import {
+  PaginatedPlanetsResult,
+  ORDER_ORIENTATION_TYPES,
+  Planet,
+} from "../types/common";
 
 type usePlanetsReturn = PaginatedPlanetsResult & {
   isLoading: boolean;

@@ -1,9 +1,9 @@
 import React from "react";
 import { usePlanets } from "../../hooks";
-import { ORDER_ORIENTATION_TYPES } from "../../utils/types";
 import { Box } from "./styled";
 import { AVAILABLE_CLIMATES } from "../../utils/constants";
 import PrevNextButtons from "../../components/PrevNextButtons";
+import { ORDER_ORIENTATION_TYPES } from "../../types/common";
 
 function PlanetsListView() {
   const {

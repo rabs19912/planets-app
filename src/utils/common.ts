@@ -1,4 +1,5 @@
-import { ORDER_ORIENTATION_TYPES } from "./types";
+import { ORDER_ORIENTATION_TYPES } from "../types/common";
+
 
 const compareString = (firstValue: string, secondValue: string) =>
   firstValue.localeCompare(secondValue);
