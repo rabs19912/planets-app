@@ -1,0 +1,1 @@
+export {SortSelect as default} from './SortSelect';

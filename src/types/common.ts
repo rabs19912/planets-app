@@ -1,7 +1,8 @@
+import { SingleValue } from "react-select";
 
 export enum ORDER_ORIENTATION_TYPES {
-    asc = "ascendent",
-    desc = "descendent",
+  asc = "ascendent",
+  desc = "descendent",
 }
 
 export type PaginatedPlanetsResult = {
@@ -28,3 +29,15 @@ export type Planet = {
   url: string;
 };
 
+export type SelectOption = SingleValue<{
+  value: SORT_OPTIONS;
+  label: string;
+  data: { order: ORDER_ORIENTATION_TYPES };
+}>;
+
+export enum SORT_OPTIONS {
+  ascAlphabet = "asc_alphabet",
+  descAlphabet = "desc_alphabet",
+  ascDiameter = "asc_diameter",
+  descDiameter = "desc_diameter",
+}
