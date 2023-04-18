@@ -1,11 +1,15 @@
 import { usePlanets } from "../../hooks";
-import { Box, SelectsContainers } from "./styled";
+import {
+  PlanetsContainer,
+  SelectsContainers,
+} from "./styled";
 import { AVAILABLE_CLIMATES } from "../../utils/constants";
-import { ORDER_ORIENTATION_TYPES, SelectOption } from "../../types/common";
+import { SelectOption } from "../../types/common";
 import PrevNextButtons from "../../components/PrevNextButtons";
 import Header from "../../components/Header";
 import SortSelect from "../../components/SortSelect";
 import FilterSelect from "../../components/FilterSelect";
+import Card from "../../components/Card";
 
 function PlanetsListView() {
   const {
@@ -18,7 +22,6 @@ function PlanetsListView() {
     filterByClimate,
     resetFilters,
   } = usePlanets();
-
 
   const filterByClimateOptions = AVAILABLE_CLIMATES.map((climate) => {
     return { label: climate, value: climate };
@@ -46,22 +49,18 @@ function PlanetsListView() {
           onFilter={onFilterByClimate}
           filterOptions={filterByClimateOptions}
         />
-
       </SelectsContainers>
-      {Boolean(planets?.length) &&
-        planets?.map((planet, index) => {
-          return (
-            <Box key={index}>
-              <div>NAME: {planet.name}</div>
-              {/* <div>POPULATION: {planet.population}</div> */}
-              <div>DIAMETER: {planet.diameter}</div>
-              <div>CLIMATE: {planet.climate}</div>
-            </Box>
-          );
-        })}
-      {!Boolean(planets?.length) && (
-        <div>No hay resultados que coincidan con tu busqueda o filtro</div>
-      )}
+      <PlanetsContainer>
+        {Boolean(planets?.length) &&
+          planets?.map((planet, index) => {
+            return (
+              <Card key={index} planet={planet}/>
+            );
+          })}
+        {!Boolean(planets?.length) && (
+          <div>No hay resultados que coincidan con tu busqueda o filtro</div>
+        )}
+      </PlanetsContainer>
       <PrevNextButtons
         next={next}
         previous={previous}

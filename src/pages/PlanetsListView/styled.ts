@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-export const  Box = styled.div`
-    border: 1px solid red;
-`
-
 export const SelectsContainers = styled.div`
-    padding: 0 20px;
-    margin-bottom: 20px;
-`
+  padding: 0 30px;
+  margin-bottom: 20px;
+`;
+
+export const PlanetsContainer = styled.div`
+  padding: 0 30px;
+`;
