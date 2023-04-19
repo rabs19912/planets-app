@@ -1,5 +1,5 @@
 import { createGlobalStyle } from "styled-components";
-import {NunitoSans} from '../assets/fonts';
+import { NunitoSans } from "../assets/fonts";
 
 const GlobalStyle = createGlobalStyle`
   
@@ -66,6 +66,3 @@ const GlobalStyle = createGlobalStyle`
 `;
 
 export { GlobalStyle };
-
-
-

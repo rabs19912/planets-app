@@ -25,9 +25,11 @@ function usePlanets(): usePlanetsReturn {
   const [planetsUrl, setPlanetsUrl] = React.useState<string>();
   const [planets, setPlanets] = React.useState<Planet[]>();
 
+  const fetchPlanets = () => getPlanets(planetsUrl);
+
   const { data, isLoading, status } = useQuery<
     AxiosResponse<PaginatedPlanetsResult>
-  >([QUERY_CACHE_KEYS.planets, planetsUrl], () => getPlanets(planetsUrl), {
+  >([QUERY_CACHE_KEYS.planets, planetsUrl], fetchPlanets, {
     refetchOnWindowFocus: false,
     refetchOnMount: false,
   });

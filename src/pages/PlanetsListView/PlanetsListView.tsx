@@ -1,3 +1,4 @@
+import React from "react";
 import { usePlanets } from "../../hooks";
 import { NoResultsText, PlanetsContainer, SelectsContainers } from "./styled";
 import { AVAILABLE_CLIMATES } from "../../utils/constants";
@@ -7,7 +8,6 @@ import Header from "../../components/Header";
 import SortSelect from "../../components/SortSelect";
 import FilterSelect from "../../components/FilterSelect";
 import Card from "../../components/Card";
-import React, { useRef } from "react";
 
 function PlanetsListView() {
   const {
@@ -42,13 +42,6 @@ function PlanetsListView() {
     }
     filterByClimate(event?.value);
   };
-
-  const onNextOrPrev = (url: string) => {
-    selectInputRef.current?.select?.clearValue();
-    updatePlanetsUrl(url);
-  };
-
-  const selectInputRef = useRef<any>();
 
   return (
     <>
@@ -88,7 +81,7 @@ function PlanetsListView() {
             <PrevNextButtons
               next={next}
               previous={previous}
-              updatePlanetsUrl={onNextOrPrev}
+              onClickPreOrNext={updatePlanetsUrl}
             />
           )}
         </>
